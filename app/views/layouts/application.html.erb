@@ -24,8 +24,28 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+    <nav class="bg-indigo-600">
+      <div class="max-w-screen-lg mx-auto px-5 flex gap-7">
+        <% [
+          ['Recipes', recipes_path],
+          ['Products', products_path]
+        ].each do |name, path| %>
+          <div class="text-white text-lg my-3"><%= link_to name, path %></div>
+        <% end %>
+        <div class="flex-grow"></div>
+        <div class="text-white text-xs pt-2.5">
+          <%= Current.user.email_address %><br>
+          Logout
+        </div>
+      </div>
+    </nav>
+    <main class="max-w-screen-lg mx-auto mt-10 px-5 font-large flex">
+      <div class="w-full">
+        <% if notice.present? %>
+          <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+        <% end %>
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>

@@ -1,0 +1,22 @@
+<% content_for :title, "Products" %>
+
+<div class="flex justify-between items-center mb-4">
+  <h1 class="font-bold text-4xl">Products</h1>
+  <%= link_to "New product", new_product_path, class: "rounded-lg py-2 px-3 bg-blue-600 text-white block font-medium" %>
+</div>
+
+<div id="products" class="min-w-full">
+  <div class="grid grid-cols-[1fr_auto_auto_auto] gap-3">
+    <% @products.each do |product| %>
+      <div class="contents">
+        <div><%= product.name %></div>
+        <div><%= product.calories %>kcal</div>
+        <div><%= product.units_per_kcal %> <%= product.unit %></div>
+        <div>
+          <%= link_to "Edit", edit_product_path(product), class: "rounded-lg py-1 px-3 bg-blue-600 text-white text-sm inline-block font-medium" %>
+          <%= link_to "Delete", edit_product_path(product), class: "rounded-lg py-1 px-3 bg-blue-600 text-white text-sm inline-block font-medium" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

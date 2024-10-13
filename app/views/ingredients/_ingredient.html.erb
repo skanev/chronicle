@@ -1,0 +1,9 @@
+<turbo-frame id="<%= dom_id ingredient %>" class="contents">
+  <%= form_with model: ingredient, class: 'contents' do |form| %>
+    <%= render 'ingredients/form', form:, products: %>
+    <div>
+      <%= form.submit 'Save', class: "rounded-lg py-1 px-3 bg-blue-600 text-white text-sm inline-block font-medium" %>
+      <%= link_to 'Delete', ingredient, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "rounded-lg py-1 px-3 bg-red-600 text-white text-sm inline-block font-medium" %>
+    </div>
+  <% end %>
+</turbo-frame>

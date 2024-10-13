@@ -1,0 +1,7 @@
+<div>
+  <%= form.collection_select :product_id, products, :id, :name, {include_blank: '-- select product --'},
+    class: ['w-80', ('border-red-400' if form.object.errors.key?(:product_id))] %>
+</div>
+<div>
+  <%= form.number_field :quantity, class: [('border-red-400' if form.object.errors.key?(:quantity))] %>
+</div>
