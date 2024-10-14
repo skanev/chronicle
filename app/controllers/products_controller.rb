@@ -42,10 +42,10 @@ class ProductsController < ApplicationController
   private
 
   def set_product
-    @product = Current.user.products.find(params.expect(:id))
+    @product = Current.user.products.find params[:id]
   end
 
   def product_params
-    params.expect(product: [ :name, :calories, :unit, :units_per_kcal ])
+    params.expect(product: [:name, :calories, :unit, :units_per_kcal])
   end
 end
