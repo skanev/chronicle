@@ -2,12 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
+.btn-danger { @apply rounded-lg py-2 px-3 bg-red-600 text-white; }
+.btn-primary { @apply rounded-lg py-2 px-3 bg-blue-600 text-white; }
 
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
-}
-
-*/
+turbo-frame { @apply contents; }

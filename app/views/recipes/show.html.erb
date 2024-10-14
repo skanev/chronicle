@@ -1,7 +1,7 @@
 <div>
   <h1 class="font-bold text-4xl pb-6"><%= @recipe.name %></h1>
 
-  <div class="grid grid-cols-[auto_auto_auto] gap-3">
+  <div class="grid grid-cols-[1fr_auto_auto] gap-3">
     <turbo-frame id="ingredients" class="contents">
       <% @recipe.ingredients.each do |ingredient| %>
         <%= render ingredient, products: @products %>

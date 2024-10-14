@@ -1,8 +1,7 @@
-<turbo-frame id="new-ingredient" class="contents">
-  <%= form_with model: new_ingredient, url: recipe_ingredients_path(new_ingredient.recipe_id), method: :post, class: 'contents' do |form| %>
-    <%= render 'ingredients/form', form:, products: %>
-    <div>
-      <%= form.submit 'Add', class: "rounded-lg py-1 px-3 bg-blue-600 text-white text-sm inline-block font-medium" %>
-    </div>
+<%= turbo_frame_tag 'new-ingredient' do %>
+  <%= inline_form_with model: new_ingredient, url: recipe_ingredients_path(new_ingredient.recipe_id), method: :post do |form| %>
+    <%= form.collection_select :product_id, products, :id, :name, {include_blank: '-- select product --'} %>
+    <%= form.number_field :quantity %>
+    <%= form.submit 'Add' %>
   <% end %>
-</turbo-frame>
+<% end %>
