@@ -1,10 +1,8 @@
 <%= turbo_frame_tag ingredient do %>
-  <%= inline_form_with model: ingredient do |form| %>
-    <%= form.collection_select :product_id, products, :id, :name, {include_blank: '-- select product --'} %>
-    <%= form.number_field :quantity %>
-    <div class="flex gap-2">
-      <%= form.submit 'Save' %>
-      <%= button_to 'Delete', ingredient, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn-danger' %>
-    </div>
-  <% end %>
+  <div><%= ingredient.product.name %></div>
+  <div><%= ingredient.quantity %></div>
+  <div class="flex gap-2">
+    <%= button_to 'Edit', edit_ingredient_path(ingredient), class: 'btn-primary', method: :get %>
+    <%= button_to 'Delete', ingredient, method: :delete, data: {turbo_confirm: 'Are you sure?'}, class: 'btn-danger' %>
+  </div>
 <% end %>

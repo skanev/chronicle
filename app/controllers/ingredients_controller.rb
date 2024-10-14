@@ -1,19 +1,24 @@
 class IngredientsController < ApplicationController
   def create
-    recipe = Current.user.recipes.find params[:recipe_id]
+    recipe = current_user.recipes.find params[:recipe_id]
+
     ingredient = recipe.ingredients.new ingredient_params
-    products = Current.user.products
 
     if ingredient.save
       render turbo_stream: [
-        turbo_stream.replace('new-ingredient', partial: 'ingredients/new_ingredient', locals: {new_ingredient: recipe.ingredients.new, products:}),
-        turbo_stream.append('ingredients', partial: 'ingredients/ingredient', locals: {ingredient:, products:})
+        turbo_stream.replace(:new_ingredient, partial: 'create', locals: {ingredient: recipe.ingredients.new}),
+        turbo_stream.append(:ingredients, ingredient)
       ]
     else
-      render turbo_stream: turbo_stream.
-        replace('new-ingredient', partial: 'ingredients/new_ingredient', locals: {new_ingredient: ingredient, products:}),
-        status: :unprocessable_entity
+      render turbo_stream: turbo_stream. replace(:new_ingredient, partial: 'create', locals: {ingredient:}),
+             status: :unprocessable_entity
     end
+  end
+
+  def edit
+    ingredient = find_ingredient
+
+    render turbo_stream: turbo_stream.replace(ingredient, partial: 'form', locals: {ingredient:})
   end
 
   def update
@@ -21,13 +26,10 @@ class IngredientsController < ApplicationController
     ingredient = find_ingredient
 
     if ingredient.update ingredient_params
-      render turbo_stream: [
-        turbo_stream.replace(ingredient, partial: 'ingredients/ingredient', locals: {ingredient:, products:}),
-      ]
+      render turbo_stream: turbo_stream.replace(ingredient)
     else
-      render turbo_stream: [
-        turbo_stream.replace(ingredient, partial: 'ingredients/ingredient', locals: {ingredient:, products:}),
-      ], status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace(ingredient, partial: 'form', locals: {ingredient:}),
+             status: :unprocessable_entity
     end
   end
 
@@ -42,7 +44,7 @@ class IngredientsController < ApplicationController
   private
 
   def ingredient_params
-    params.expect(ingredient: [:product_id, :quantity])
+    params.expect ingredient: %i[product_id quantity]
   end
 
   def find_ingredient

@@ -1,13 +1,11 @@
 <div>
   <h1 class="font-bold text-4xl pb-6"><%= @recipe.name %></h1>
 
-  <div class="grid grid-cols-[1fr_auto_auto] gap-3">
-    <turbo-frame id="ingredients" class="contents">
-      <% @recipe.ingredients.each do |ingredient| %>
-        <%= render ingredient, products: @products %>
-      <% end %>
-    </turbo-frame>
+  <div class="grid grid-cols-[1fr_auto_auto] gap-3 items-center">
+    <%= turbo_frame_tag :ingredients do %>
+      <%= render @recipe.ingredients %>
+    <% end %>
 
-    <%= render 'ingredients/new_ingredient', new_ingredient: @recipe.ingredients.build, products: @products %>
+    <%= render 'ingredients/create', ingredient: @recipe.ingredients.build %>
   </div>
 </div>

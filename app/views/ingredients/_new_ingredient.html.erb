@@ -1,7 +1,0 @@
-<%= turbo_frame_tag 'new-ingredient' do %>
-  <%= inline_form_with model: new_ingredient, url: recipe_ingredients_path(new_ingredient.recipe_id), method: :post do |form| %>
-    <%= form.collection_select :product_id, products, :id, :name, {include_blank: '-- select product --'} %>
-    <%= form.number_field :quantity %>
-    <%= form.submit 'Add' %>
-  <% end %>
-<% end %>

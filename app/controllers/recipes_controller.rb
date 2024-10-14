@@ -1,10 +1,9 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Current.user.recipes
+    @recipes = current_user.recipes
   end
 
   def show
-    @recipe = Current.user.recipes.find params[:id]
-    @products = Current.user.products
+    @recipe = current_user.recipes.includes(ingredients: :product).find params[:id]
   end
 end

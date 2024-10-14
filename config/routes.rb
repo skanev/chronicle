@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
 
-  resources :ingredients
-
   resources :recipes do
     resources :ingredients, shallow: true
   end

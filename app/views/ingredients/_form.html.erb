@@ -1,7 +1,7 @@
-<div>
-  <%= form.collection_select :product_id, products, :id, :name, {include_blank: '-- select product --'},
-    class: ['w-80', ('border-red-400' if form.object.errors.key?(:product_id))] %>
-</div>
-<div>
-  <%= form.number_field :quantity, class: [('border-red-400' if form.object.errors.key?(:quantity))] %>
-</div>
+<%= turbo_frame_tag ingredient do %>
+  <%= inline_form_with model: ingredient do |form| %>
+    <%= form.collection_select :product_id, current_user.products, :id, :name %>
+    <%= form.number_field :quantity %>
+    <%= form.submit 'Save' %>
+  <% end %>
+<% end %>
