@@ -24,21 +24,23 @@
   </head>
 
   <body>
-    <nav class="bg-indigo-600">
-      <div class="max-w-screen-lg mx-auto px-5 flex gap-7">
-        <% [
-          ['Recipes', recipes_path],
-          ['Products', products_path]
-        ].each do |name, path| %>
-          <div class="text-white text-lg my-3"><%= link_to name, path %></div>
-        <% end %>
-        <div class="flex-grow"></div>
-        <div class="text-white text-xs pt-2.5">
-          <%= Current.user.email_address %><br>
-          Logout
+    <% if Current.user %>
+      <nav class="bg-indigo-600">
+        <div class="max-w-screen-lg mx-auto px-5 flex gap-7">
+          <% [
+            ['Recipes', recipes_path],
+            ['Products', products_path]
+          ].each do |name, path| %>
+            <div class="text-white text-lg my-3"><%= link_to name, path %></div>
+          <% end %>
+          <div class="flex-grow"></div>
+          <div class="text-white text-xs pt-2.5">
+            <%= Current.user.email_address %><br>
+            Logout
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    <% end %>
     <main class="max-w-screen-lg mx-auto mt-10 px-5 font-large flex">
       <div class="w-full">
         <% if notice.present? %>
