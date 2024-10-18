@@ -1,0 +1,9 @@
+<%= content_for :title, 'Create recipe' %>
+
+<h1 class="font-bold text-4xl pb-6">Create recipe</h1>
+<%= vertical_form_with model: @recipe do |form| %>
+  <%= form.text_field :name %>
+  <%= form.text_field :source_url %>
+  <%= form.text_area :instructions, rows: 16 %>
+  <div><%= form.submit 'Create recipe' %></div>
+<% end %>
