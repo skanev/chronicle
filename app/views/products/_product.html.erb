@@ -1,22 +1,12 @@
-<div id="<%= dom_id product %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= product.name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Calories:</strong>
-    <%= product.calories %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Unit:</strong>
-    <%= product.unit %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Units per kcal:</strong>
-    <%= product.units_per_kcal %>
-  </p>
-
-</div>
+<%= turbo_frame_tag product do %>
+  <div class="contents">
+    <div><%= product.name %></div>
+    <div><%= product.calories %>kcal</div>
+    <div><%= product.units_per_kcal %> <%= product.unit %></div>
+    <div class="flex gap-2">
+      <% disabled = product.ingredients.size > 0 %>
+      <%= button_to "Edit", edit_product_path(product), method: :get, class: 'btn-primary' %>
+      <%= button_to "Delete", product_path(product), disabled:, method: :delete, class: 'btn-danger' %>
+    </div>
+  </div>
+<% end %>

@@ -8,13 +8,16 @@ class InlineFormBuilder < ActionView::Helpers::FormBuilder
 
   def collection_select(method, collection, value_method, text_method, select_options = {}, html_options = {})
     extend_classes html_options, "w-full rounded-lg shadow py-2 px-4"
-    html_options[:class] << " border-red-500" if object.errors.key? method
     super
   end
 
   def number_field(method, **options)
     extend_classes options, "w-full rounded-lg shadow py-2 px-4"
-    options[:class] << " border-red-500" if object.errors.key? method
+    super
+  end
+
+  def text_field(method, **options)
+    extend_classes options, "w-full rounded-lg shadow py-2 px-4"
     super
   end
 

@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 .btn-danger { @apply rounded-lg py-2 px-3 bg-red-600 text-white; }
+.btn-danger[disabled] { @apply bg-gray-400 text-gray-300; }
 .btn-primary { @apply rounded-lg py-2 px-3 bg-blue-600 text-white; }
 
 turbo-frame { @apply contents; }
+
+.field_with_erorrs { @apply contents; }
+
+.field_with_errors input,
+.field_with_errors select { @apply border-red-500; }
+

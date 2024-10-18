@@ -1,48 +1,47 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy ]
-
   def index
-    @products = Current.user.products
-  end
-
-  def show
-  end
-
-  def new
-    @product = Product.new
-  end
-
-  def edit
+    @products = current_user.products.includes(:ingredients).to_a
   end
 
   def create
-    @product = Product.new(product_params)
-    @product.user = Current.user
+    product = current_user.products.new product_params
 
-    if @product.save
-      redirect_to @product, notice: "Product was successfully created."
+    if product.save
+      render turbo_stream: [
+        turbo_stream.replace(:new_product, partial: 'create', locals: {product: current_user.products.new}),
+        turbo_stream.append(:products, product)
+      ]
     else
-      render :new, status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace(:new_product, partial: 'create', locals: {product:})
     end
   end
 
+  def edit
+    product = find_product
+
+    render turbo_stream: turbo_stream.replace(product, partial: 'form', locals: {product:})
+  end
+
   def update
-    if @product.update(product_params)
-      redirect_to products_path, notice: "Product was successfully updated."
+    product = find_product
+
+    if product.update product_params
+      render turbo_stream: turbo_stream.replace(product)
     else
-      render :edit, status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace(product, partial: 'form', locals: {product:})
     end
   end
 
   def destroy
-    @product.destroy!
-    redirect_to products_path, status: :see_other, notice: "Product was successfully destroyed."
+    product = find_product
+    product.destroy!
+    render turbo_stream: turbo_stream.remove(product)
   end
 
   private
 
-  def set_product
-    @product = Current.user.products.find params[:id]
+  def find_product
+    current_user.products.find params[:id]
   end
 
   def product_params

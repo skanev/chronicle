@@ -1,11 +1,11 @@
-<%= turbo_frame_tag product do %>
-  <%= inline_form_with model: product do |form| %>
-    <div class="col-span-4 flex gap-3">
+<%= turbo_frame_tag :new_product do %>
+  <div class="flex gap-4">
+    <%= inline_form_with model: product, url: products_path, method: :post do |form| %>
       <div class="grow"><%= form.text_field :name, placeholder: 'Name',autocomplete: 'off', 'data-1p-ignore' => true %></div>
       <div class="w-20"><%= form.number_field :calories, placeholder: 'kcal' %></div>
       <div class="w-20"><%= form.number_field :units_per_kcal, placeholder: 'u/kcal' %></div>
       <div class="w-20"><%= form.text_field :unit, placeholder: 'unit' %></div>
-      <div><%= form.submit 'Save' %></div>
-    </div>
-  <% end %>
+      <div class=""><%= form.submit 'Create' %></div>
+    <% end %>
+  </div>
 <% end %>
