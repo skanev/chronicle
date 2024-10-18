@@ -2,23 +2,8 @@ class InlineFormBuilder < ActionView::Helpers::FormBuilder
   class << self
     def apply_to(options)
       options[:builder] = InlineFormBuilder
-      options[:class] = 'contents'
+      options[:class] = 'contents inline-form'
     end
-  end
-
-  def collection_select(method, collection, value_method, text_method, select_options = {}, html_options = {})
-    extend_classes html_options, "w-full rounded-lg shadow py-2 px-4"
-    super
-  end
-
-  def number_field(method, **options)
-    extend_classes options, "w-full rounded-lg shadow py-2 px-4"
-    super
-  end
-
-  def text_field(method, **options)
-    extend_classes options, "w-full rounded-lg shadow py-2 px-4"
-    super
   end
 
   def submit(value, **options)
