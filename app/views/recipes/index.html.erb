@@ -2,15 +2,15 @@
 
 <div class="flex justify-between items-center mb-4">
   <h1 class="font-bold text-4xl">Recipes</h1>
-  <%= link_to 'New recipe', new_recipe_path, class: "rounded-lg py-2 px-3 bg-blue-600 text-white block font-medium" %>
+  <%= link_to 'New recipe', new_recipe_path, class: 'btn-primary' %>
 </div>
 
-<div class="grid grid-cols-3 grid-cols-[1fr_auto_auto] gap-3">
+<div class="grid grid-cols-3 grid-cols-[1fr_auto_auto] items-center gap-3">
   <% @recipes.each do |recipe| %>
     <div class="contents">
       <div><%= recipe.name %></div>
       <div><%= recipe.ingredients.count %> ingredients</div>
-      <div><%= link_to 'View', recipe, class: "rounded-lg py-1 px-3 bg-blue-600 text-white text-sm inline-block font-medium" %></div>
+      <div><%= link_to 'View', recipe, class: 'btn-primary' %></div>
     </div>
   <% end %>
 </div>

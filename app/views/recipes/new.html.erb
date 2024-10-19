@@ -5,5 +5,7 @@
   <%= form.text_field :name %>
   <%= form.text_field :source_url %>
   <%= form.text_area :instructions, rows: 16 %>
-  <div><%= form.submit 'Create recipe' %></div>
+  <div class="flex flex-row justify-end gap-2">
+    <%= form.submit 'Create recipe' %>
+  </div>
 <% end %>

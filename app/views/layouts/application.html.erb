@@ -31,7 +31,7 @@
             ['Recipes', recipes_path],
             ['Products', products_path]
           ].each do |name, path| %>
-            <div class="text-white text-lg my-3"><%= link_to name, path %></div>
+            <div class="text-white text-lg my-3"><%= link_to name, path, class: 'cursor-pointer' %></div>
           <% end %>
           <div class="flex-grow"></div>
           <div class="text-white text-xs pt-2.5">
@@ -41,7 +41,7 @@
         </div>
       </nav>
     <% end %>
-    <main class="max-w-screen-lg mx-auto mt-10 px-5 font-large flex">
+    <main class="max-w-screen-lg mx-auto mt-10 px-5 font-large flex pb-20">
       <div class="w-full flex flex-col gap-4">
         <% if notice.present? %>
           <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
