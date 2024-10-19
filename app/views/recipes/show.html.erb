@@ -1,11 +1,17 @@
-<div>
-  <h1 class="font-bold text-4xl pb-6"><%= @recipe.name %></h1>
+<h1 class="font-bold text-4xl"><%= @recipe.name %></h1>
 
-  <div class="grid grid-cols-[1fr_auto_auto] gap-3 items-center">
-    <%= turbo_frame_tag :ingredients do %>
-      <%= render @recipe.ingredients %>
-    <% end %>
+<% if @recipe.source_url.present? %>
+  <%= link_to 'Original source', @recipe.source_url, class: 'text-sm text-blue-400' %>
+<% end %>
 
-    <%= render 'ingredients/create', ingredient: @recipe.ingredients.build %>
-  </div>
+<div class="grid grid-cols-[1fr_auto_auto] gap-3 items-center">
+  <%= turbo_frame_tag :ingredients do %>
+    <%= render @recipe.ingredients %>
+  <% end %>
+
+  <%= render 'ingredients/create', ingredient: @recipe.ingredients.build %>
+</div>
+
+<div class="prose max-w-none">
+  <%= markdown @recipe.instructions %>
 </div>
