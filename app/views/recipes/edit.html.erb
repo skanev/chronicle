@@ -1,0 +1,22 @@
+<%= vertical_form_with model: @recipe do |form| %>
+  <%= form.text_field :name %>
+  <%= form.text_field :source_url %>
+
+  <div>
+    Ingredients
+    <div class="grid grid-cols-[1fr_auto] gap-3 items-center">
+      <%= form.fields_for :ingredients do |ingredient_form| %>
+        <%= ingredient_form.hidden_field :id %>
+        <%= ingredient_form.collection_select :product_id, current_user.products, :id, :name %>
+        <%= ingredient_form.number_field :quantity %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= form.text_area :instructions, class: 'font-mono', rows: 16 %>
+
+  <div class="actions">
+    <%= link_to 'Back to recipe', @recipe, class: 'btn-secondary' %>
+    <%= form.submit 'Save' %>
+  </div>
+<% end %>

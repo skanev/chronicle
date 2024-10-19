@@ -5,6 +5,7 @@
 .btn-danger { @apply inline-block rounded-lg py-2 px-3 bg-red-600 border border-red-800 text-white; }
 .btn-danger[disabled] { @apply bg-gray-400 text-gray-300 border-gray-500; }
 .btn-primary { @apply inline-block rounded-lg py-2 px-3 bg-blue-500 border border-blue-700 text-white; }
+.btn-secondary { @apply inline-block rounded-lg py-2 px-3 bg-slate-400 border border-slate-500 text-white; }
 
 turbo-frame { @apply contents; }
 
@@ -29,4 +30,5 @@ turbo-frame { @apply contents; }
   @apply flex flex-col gap-4;
   & .input-block { @apply flex flex-col; }
   & .error-messages { @apply text-red-500; }
+  & .actions { @apply flex flex-row justify-end gap-2; }
 }

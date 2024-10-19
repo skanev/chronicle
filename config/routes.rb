@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
 
   resources :recipes do
+    get :edit_ingredients, on: :member
+    get :list_ingredients, on: :member
+
     resources :ingredients, shallow: true
   end
 

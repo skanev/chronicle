@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_18_194945) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_19_193835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "ingredients", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.bigint "product_id", null: false
-    t.decimal "quantity", null: false
+    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_ingredients_on_product_id"
