@@ -29,7 +29,8 @@
         <div class="max-w-screen-lg mx-auto px-5 flex gap-7">
           <% [
             ['Recipes', recipes_path],
-            ['Products', products_path]
+            ['Products', products_path],
+            ['Cooking History', cooked_meals_path]
           ].each do |name, path| %>
             <div class="text-white text-lg my-3"><%= link_to name, path, class: 'cursor-pointer' %></div>
           <% end %>

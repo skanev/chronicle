@@ -19,9 +19,17 @@ turbo-frame { @apply contents; }
 .vertical-form {
   & textarea,
   & input[type=text],
+  & input[type=date],
   & input[type=number] { @apply w-full rounded-lg shadow py-2 px-4; }
 
   & select { @apply w-full rounded-lg shadow py-2 px-4; }
+
+  & .field-with-units {
+    @apply relative;
+
+    & .units { @apply absolute max-w-2 overflow-hidden right-3; }
+    & input { @apply pr-6 text-right; }
+  }
 }
 
 .units { @apply font-mono text-sm text-slate-500; }

@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   resources :recipes do
     get :edit_ingredients, on: :member
     get :list_ingredients, on: :member
+    post :cook, on: :member
 
     resources :ingredients, shallow: true
   end
+
+  resources :cooked_meals
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

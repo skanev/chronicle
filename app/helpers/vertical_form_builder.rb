@@ -18,6 +18,18 @@ class VerticalFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def number_field(method, **options)
+    @template.content_tag :div, class: 'input-block' do
+      label(method) + super + error_messages_on(method)
+    end
+  end
+
+  def date_field(method, **options)
+    @template.content_tag :div, class: 'input-block' do
+      label(method) + super + error_messages_on(method)
+    end
+  end
+
   def submit(value, **options)
     extend_classes options, 'btn-primary'
     super

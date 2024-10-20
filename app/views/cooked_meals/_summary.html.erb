@@ -1,0 +1,11 @@
+<%# locals: (cooked_meal:) %>
+<%= turbo_frame_tag :summary do %>
+  <div class="flex flex-col">
+    <div>Total calories: <%= cooked_meal.total_calories %></div>
+    <% if cooked_meal.weight.present? %>
+      <div>
+        <%= cooked_meal.total_calories * 100 / cooked_meal.weight %><span class="units">kcal</span> / 100<span class="units">g</span>
+      </div>
+    <% end %>
+  </div>
+<% end %>

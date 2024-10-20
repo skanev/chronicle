@@ -10,9 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_19_193835) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_20_184300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "cooked_meal_ingredients", force: :cascade do |t|
+    t.bigint "cooked_meal_id", null: false
+    t.string "product", null: false
+    t.integer "quantity", null: false
+    t.integer "calories", null: false
+    t.string "unit", null: false
+    t.integer "units_per_kcal", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cooked_meal_id"], name: "index_cooked_meal_ingredients_on_cooked_meal_id"
+  end
+
+  create_table "cooked_meals", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.date "cooked_on", null: false
+    t.integer "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_cooked_meals_on_recipe_id"
+    t.index ["user_id"], name: "index_cooked_meals_on_user_id"
+  end
 
   create_table "ingredients", force: :cascade do |t|
     t.bigint "recipe_id", null: false
@@ -62,6 +85,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_19_193835) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "cooked_meal_ingredients", "cooked_meals"
+  add_foreign_key "cooked_meals", "recipes"
+  add_foreign_key "cooked_meals", "users"
   add_foreign_key "ingredients", "products"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "products", "users"

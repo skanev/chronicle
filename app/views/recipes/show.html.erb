@@ -1,6 +1,6 @@
-
-<div class="flex">
+<div class="flex gap-3">
   <h1 class="font-bold text-4xl flex-1"><%= @recipe.name %></h1>
+  <%= button_to 'Cook!', cook_recipe_path(@recipe), method: :post, class: 'btn-primary' %>
   <%= link_to 'Edit recipe', edit_recipe_path(@recipe), class: 'btn-primary' %>
 </div>
 

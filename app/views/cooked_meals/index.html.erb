@@ -1,0 +1,13 @@
+<% content_for :title, "Cooked meals" %>
+
+<h1 class="font-bold text-4xl">Cooked meals</h1>
+
+<div class="grid grid-cols-[1fr_auto_auto] gap-3 items-center">
+  <% @cooked_meals.each do |meal| %>
+    <div><%= meal.recipe.name %></div>
+    <div><%= meal.cooked_on %></div>
+    <div>
+      <%= link_to 'Edit', meal, class: 'btn-primary' %>
+    </div>
+  <% end %>
+</div>

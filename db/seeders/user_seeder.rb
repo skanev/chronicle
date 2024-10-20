@@ -12,6 +12,8 @@ class UserSeeder
     end
   end
 
+  attr_reader :user
+
   def initialize(**attributes)
     @user = User.create!(attributes)
     @products = {}

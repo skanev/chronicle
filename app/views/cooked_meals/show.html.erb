@@ -1,0 +1,30 @@
+<% content_for :title, "Cooked meals" %>
+
+<h1 class="font-bold text-4xl"><%= @cooked_meal.recipe.name %> on <%= @cooked_meal.cooked_on %></h1>
+
+<%= vertical_form_with model: @cooked_meal do |form| %>
+  <%= form.date_field :cooked_on %>
+  <%= form.number_field :weight %>
+
+  <div class="grid grid-cols-[1fr_auto_auto_auto] gap-2 items-center">
+    <% @cooked_meal.ingredients.each do |ingredient| %>
+      <div class="inline-form contents">
+        <%= form.fields_for :ingredients, ingredient, builder: InlineFormBuilder do |ingredient_form| %>
+          <div><%= ingredient.product %></div>
+          <div class="flex flex-row items-center gap-2 field-with-units">
+            <div class="w-28"><%= ingredient_form.text_field :quantity %></div>
+            <span class="units"><%= ingredient.unit %></span>
+          </div>
+          <div class="w-20"><%= ingredient_form.text_field :calories, class: 'text-right' %></div>
+          <div><span class="units">kcal</span> / <%= ingredient.units_per_kcal %><span class="units"><%= ingredient.unit %></span></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flex flex-row justify-end">
+    <%= form.submit 'Update', class: 'btn-primary' %>
+  </div>
+<% end %>
+
+<%= render 'summary', cooked_meal: @cooked_meal %>

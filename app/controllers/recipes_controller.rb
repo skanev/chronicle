@@ -35,6 +35,26 @@ class RecipesController < ApplicationController
     end
   end
 
+  def cook
+    recipe = find_recipe
+
+    meal = CookedMeal.new recipe:, user: current_user, cooked_on: Date.today
+
+    recipe.ingredients.each do |ingredient|
+      meal.ingredients.build(
+        product: ingredient.product.name,
+        quantity: ingredient.quantity,
+        calories: ingredient.product.calories,
+        unit: ingredient.product.unit,
+        units_per_kcal: ingredient.product.units_per_kcal
+      )
+    end
+
+    meal.save!
+
+    redirect_to meal
+  end
+
   def edit_ingredients
     recipe = find_recipe
 
