@@ -5,4 +5,8 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
 
   accepts_nested_attributes_for :ingredients, allow_destroy: true
+
+  def source_domain
+    source_url ? URI.parse(source_url).host.gsub(/^www\./, '') : nil
+  end
 end

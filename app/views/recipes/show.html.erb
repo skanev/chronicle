@@ -5,7 +5,7 @@
 </div>
 
 <% if @recipe.source_url.present? %>
-  <%= link_to 'Original source', @recipe.source_url, class: 'text-sm text-blue-400' %>
+  <%= link_to "Source (#{@recipe.source_domain})", @recipe.source_url, class: 'text-sm text-blue-400' %>
 <% end %>
 
 <%= render 'ingredients', recipe: @recipe %>

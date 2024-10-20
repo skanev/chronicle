@@ -41,6 +41,8 @@ class UserSeeder
         end
       in 'Instructions:'
         recipe.instructions = body
+      in 'URL'
+        recipe.source_url = body.strip
       end
     end
 

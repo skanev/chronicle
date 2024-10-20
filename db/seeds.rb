@@ -27,6 +27,9 @@ UserSeeder.define do
       flour: 50g
       vegatable oil: 40g
 
+      # URL
+      http://www.example.com/recipe
+
       # Instructions:
 
       1. Cut the onion and fry it in the oil.
