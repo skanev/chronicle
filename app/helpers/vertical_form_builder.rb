@@ -6,6 +6,12 @@ class VerticalFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
+  def inline_fields_for(*args, **kwargs, &block)
+    kwargs[:builder] = InlineFormBuilder
+
+    fields_for(*args, **kwargs, &block)
+  end
+
   def text_field(method, **options)
     @template.content_tag :div, class: 'input-block' do
       label(method) + super + error_messages_on(method)

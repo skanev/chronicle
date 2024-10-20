@@ -5,10 +5,10 @@
   <div>
     Ingredients
     <div class="grid grid-cols-[1fr_auto] gap-3 items-center">
-      <%= form.fields_for :ingredients do |ingredient_form| %>
-        <%= ingredient_form.hidden_field :id %>
-        <%= ingredient_form.collection_select :product_id, current_user.products, :id, :name %>
-        <%= ingredient_form.number_field :quantity %>
+      <%= form.inline_fields_for :ingredients do |fiels| %>
+        <%= fiels.hidden_field :id %>
+        <%= fiels.collection_select :product_id, current_user.products, :id, :name %>
+        <%= fiels.number_field :quantity %>
       <% end %>
     </div>
   </div>

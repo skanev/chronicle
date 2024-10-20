@@ -7,19 +7,17 @@
   <%= form.number_field :weight %>
 
   <div class="grid grid-cols-[1fr_auto_auto_auto] gap-2 items-center">
-    <% @cooked_meal.ingredients.each do |ingredient| %>
-      <div class="inline-form contents">
-        <%= form.fields_for :ingredients, ingredient, builder: InlineFormBuilder do |ingredient_form| %>
-          <div><%= ingredient.product %></div>
-          <div class="flex flex-row items-center gap-2 field-with-units">
-            <div class="w-28"><%= ingredient_form.text_field :quantity %></div>
-            <span class="units"><%= ingredient.unit %></span>
-          </div>
-          <div class="w-20"><%= ingredient_form.text_field :calories, class: 'text-right' %></div>
-          <div><span class="units">kcal</span> / <%= ingredient.units_per_kcal %><span class="units"><%= ingredient.unit %></span></div>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="inline-form contents">
+      <%= form.inline_fields_for :ingredients do |fields| %>
+        <div><%= fields.object.product %></div>
+        <div class="flex flex-row items-center gap-2 field-with-units">
+          <div class="w-28"><%= fields.text_field :quantity %></div>
+          <span class="units"><%= fields.object.unit %></span>
+        </div>
+        <div class="w-20"><%= fields.text_field :calories, class: 'text-right' %></div>
+        <div><span class="units">kcal</span> / <%= fields.object.units_per_kcal %><span class="units"><%= fields.object.unit %></span></div>
+      <% end %>
+    </div>
   </div>
 
   <div class="flex flex-row justify-end">
