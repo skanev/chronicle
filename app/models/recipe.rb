@@ -7,6 +7,8 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :ingredients, allow_destroy: true
 
   def source_domain
-    source_url ? URI.parse(source_url).host.gsub(/^www\./, '') : nil
+    source_url ? URI.parse(source_url)&.host&.gsub(/^www\./, '') : nil
+  rescue URI::InvalidURIError
+    nil
   end
 end
