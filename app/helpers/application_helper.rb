@@ -9,6 +9,11 @@ module ApplicationHelper
     form_with(**options, &block)
   end
 
+  def horizontal_form_with(**options, &block)
+    HorizontalFormBuilder.apply_to options
+    form_with(**options, &block)
+  end
+
   def markdown(text)
     renderer = Redcarpet::Render::HTML.new
     markdown = Redcarpet::Markdown.new renderer

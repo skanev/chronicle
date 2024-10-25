@@ -16,6 +16,7 @@ turbo-frame { @apply contents; }
 .field_with_errors select { @apply border-red-500; }
 
 .inline-form,
+.horizontal-form,
 .vertical-form {
   & textarea,
   & input[type=text],
@@ -34,8 +35,29 @@ turbo-frame { @apply contents; }
 
 .units { @apply font-mono text-sm text-slate-500; }
 
+.horizontal-form {
+  @apply flex flex-col gap-4;
+
+  & .input-block {
+    display: grid;
+    align-items: center;
+    grid-template:
+      "label input" auto
+      "_     error" auto
+      / 13em   1fr;
+  }
+
+  & .input-block > :nth-child(1) { @apply w-40 pr-4; grid-area: label;}
+  & .input-block > :nth-child(2) { grid-area: input; }
+  & .input-block > :nth-child(3) { grid-area: error; }
+
+  & .error-messages { @apply text-red-500; }
+  & .actions { @apply flex flex-row justify-end gap-2; }
+}
+
 .vertical-form {
   @apply flex flex-col gap-4;
+
   & .input-block { @apply flex flex-col; }
   & .error-messages { @apply text-red-500; }
   & .actions { @apply flex flex-row justify-end gap-2; }

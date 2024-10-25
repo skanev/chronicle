@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :products
   has_many :recipes
   has_many :cooked_meals
+  has_many :entries
 
   normalizes :email_address, with: -> e { e.strip.downcase }
 end

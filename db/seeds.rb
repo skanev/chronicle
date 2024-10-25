@@ -72,6 +72,15 @@ UserSeeder.define do
     cooked_meal.ingredients.build product: 'eggs',          quantity: 2,    unit: 'g', calories: 80,  units_per_kcal: 1
     cooked_meal.ingredients.build product: 'vegatable oil', quantity: 40,   unit: 'g', calories: 900, units_per_kcal: 100
     cooked_meal.save!
+
+    entry = Entry.new user:, date: Date.today, weight: 80
+    entry.meals.build name: 'Banitsa', calories: 1000
+    entry.meals.build name: 'Moussaka', calories: 400
+    entry.save!
+
+    entry = Entry.new user:, date: 2.days.ago, weight: 81
+    entry.meals.build name: 'Bread', calories: 1500
+    entry.save!
   end
 
   user email_address: 'another@example.com', password: '1'

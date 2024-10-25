@@ -1,0 +1,10 @@
+<%# locals: (entry_meal:) %>
+<%= turbo_frame_tag :new_entry_meal do %>
+  <div class="flex gap-4">
+    <%= inline_form_with model: [entry_meal.entry, entry_meal], method: :post do |form| %>
+      <div class="grow"><%= form.text_field :name, placeholder: 'Name', autocomplete: 'off', 'data-1p-ignore' => true %></div>
+      <div class="w-20"><%= form.number_field :calories, placeholder: 'kcal' %></div>
+      <div class=""><%= form.submit 'Create' %></div>
+    <% end %>
+  </div>
+<% end %>

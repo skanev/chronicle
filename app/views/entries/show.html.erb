@@ -1,0 +1,22 @@
+<div class="flex flex-col">
+  <%= link_to '← Back', entries_path, class: 'text-sm text-blue-300' %>
+  <div class="text-2xl font-bold"><%= params[:id] %></div>
+</div>
+
+<%= horizontal_form_with model: @entry, method: :patch do |form| %>
+  <%= form.number_field :weight %>
+  <%= form.check_box :complete %>
+  <div class="actions">
+    <%= form.submit 'Save' %>
+  </div>
+<% end %>
+
+<div class="text-2xl font-bold mt-4">Meals</div>
+
+<%= render 'entry_meals/create', entry_meal: @entry.meals.build %>
+
+<div class="grid grid-cols-[1fr_auto_auto] gap-3 items-center">
+  <%= turbo_frame_tag :entry_meals do %>
+    <%= render partial: 'entry_meals/entry_meal', collection: @entry.meals.order(id: :asc) %>
+  <% end %>
+</div>

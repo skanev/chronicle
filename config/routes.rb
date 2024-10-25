@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
 
+  resources :entries do
+    resources :entry_meals, shallow: true
+  end
+
   resources :recipes do
     get :edit_ingredients, on: :member
     get :list_ingredients, on: :member

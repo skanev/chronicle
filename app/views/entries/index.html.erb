@@ -1,0 +1,14 @@
+<div class="grid grid-cols-[auto_auto_auto] gap-3">
+  <% @date_range.reverse_each do |date| %>
+    <% entry = @entries_by_date[date] %>
+    <div class="contents">
+      <div><%= link_to date.to_formatted_s, entry_path(date.to_formatted_s(:db)), class: 'text-blue-300' %></div>
+      <div><%= entry&.weight %></div>
+      <div>
+        <% if entry&.complete? %>
+          <%= entry.calories %> <span class="units">kcal</span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
