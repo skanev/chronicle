@@ -4,12 +4,30 @@
 
   <div>
     Ingredients
-    <div class="grid grid-cols-[1fr_auto] gap-3 items-center">
-      <%= form.inline_fields_for :ingredients do |fiels| %>
-        <%= fiels.hidden_field :id %>
-        <%= fiels.collection_select :product_id, current_user.products, :id, :name %>
-        <%= fiels.number_field :quantity %>
-      <% end %>
+    <div data-controller="nested-attributes" data-nested-attributes-removed-class="hidden" class="flex flex-col gap-3">
+      <template data-nested-attributes-target="template">
+        <div data-nested-attributes-target="item" class="contents">
+          <%= form.inline_fields_for :ingredients, Ingredient.new do |fields| %>
+            <%= fields.collection_select :product_id, current_user.products, :id, :name %>
+            <%= fields.number_field :quantity %>
+            <button type="button" data-action="click->nested-attributes#remove" class="btn-primary">Remove</button>
+          <% end %>
+        </div>
+      </template>
+
+      <div data-nested-attributes-target="list" class="grid grid-cols-[1fr_auto_auto] gap-3 items-center">
+        <%= form.inline_fields_for :ingredients do |fields| %>
+          <div data-nested-attributes-target="item" class="contents">
+            <%= fields.hidden_field :id %>
+            <%= fields.collection_select :product_id, current_user.products, :id, :name %>
+            <%= fields.number_field :quantity %>
+            <%= fields.hidden_field :_destroy, value: 0 %>
+            <button type="button" data-action="click->nested-attributes#remove" class="btn-primary">Remove</button>
+          </div>
+        <% end %>
+      </div>
+
+      <button type="button" class="btn-primary" data-action="click->nested-attributes#add">Add ingredient</button>
     </div>
   </div>
 
