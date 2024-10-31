@@ -55,18 +55,6 @@ class RecipesController < ApplicationController
     redirect_to meal
   end
 
-  def edit_ingredients
-    recipe = find_recipe
-
-    render turbo_stream: turbo_stream.replace(:recipe_ingredients, partial: 'edit_ingredients', locals: {recipe:})
-  end
-
-  def list_ingredients
-    recipe = find_recipe
-
-    render turbo_stream: turbo_stream.replace(:recipe_ingredients, partial: 'ingredients', locals: {recipe:})
-  end
-
   private
 
   def find_recipe

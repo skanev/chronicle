@@ -1,8 +1,0 @@
-<%= turbo_frame_tag ingredient do %>
-  <div><%= ingredient.product.name %></div>
-  <div><%= ingredient.quantity %></div>
-  <div class="flex gap-2">
-    <%= button_to 'Edit', edit_ingredient_path(ingredient), class: 'btn-primary', method: :get %>
-    <%= button_to 'Delete', ingredient, method: :delete, data: {turbo_confirm: 'Are you sure?'}, class: 'btn-danger' %>
-  </div>
-<% end %>

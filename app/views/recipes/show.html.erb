@@ -8,7 +8,17 @@
   <%= link_to "Source (#{@recipe.source_domain})", @recipe.source_url, class: 'text-sm text-blue-400' %>
 <% end %>
 
-<%= render 'ingredients', recipe: @recipe %>
+<div class="prose max-w-none">
+  <div class="flex items-center">
+    <div class="font-bold text-2xl grow">Ingredients</div>
+  </div>
+
+  <ul>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <li><%= ingredient.quantity %><%= ingredient.product.unit %> <%= ingredient.product.name %></li>
+    <% end %>
+  </ul>
+</div>
 
 <div class="prose max-w-none">
   <%= markdown @recipe.instructions %>
