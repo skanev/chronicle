@@ -1,9 +1,9 @@
 <%# locals: (entry_meal:) %>
 <%= turbo_frame_tag entry_meal do %>
-  <div class="contents">
+  <div class="flex flex-col gap-2 md:contents">
     <div><%= entry_meal.name %></div>
-    <div class="text-right"><%= entry_meal.calories %> <span class="units">kcal</span></div>
-    <div class="flex gap-2">
+    <div class="md:text-right"><%= entry_meal.calories %> <span class="units">kcal</span></div>
+    <div class="table-actions">
       <%= button_to 'Edit', [:edit, entry_meal], method: :get, class: 'btn-primary' %>
       <%= button_to 'Delete', entry_meal, method: :delete, class: 'btn-danger', data: {turbo_confirm: 'Are you sure?'} %>
     </div>

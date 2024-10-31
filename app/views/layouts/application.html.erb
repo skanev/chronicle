@@ -23,7 +23,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-slate-100">
     <% if Current.user %>
       <nav class="bg-indigo-600">
         <div class="max-w-screen-lg mx-auto px-5 flex gap-7">
@@ -43,7 +43,7 @@
         </div>
       </nav>
     <% end %>
-    <main class="max-w-screen-lg mx-auto mt-10 px-5 font-large flex pb-20">
+    <main class="max-w-screen-lg mx-auto mt-10 md:px-5 font-large flex pb-20">
       <div class="w-full flex flex-col gap-4">
         <% if notice.present? %>
           <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>

@@ -1,10 +1,10 @@
 <%# locals: (entry_meal:) %>
 <%= turbo_frame_tag entry_meal do %>
-  <div class="flex gap-4 col-span-3">
+  <div class="flex flex-col justify-items-stretch md:flex-row gap-4 col-span-3">
     <%= inline_form_with model: entry_meal do |form| %>
       <div class="grow"><%= form.text_field :name, placeholder: 'Name', autocomplete: 'off', 'data-1p-ignore' => true %></div>
-      <div class="w-20"><%= form.number_field :calories, placeholder: 'kcal' %></div>
-      <div class=""><%= form.submit 'Save' %></div>
+      <div class="grow md:w-20 md:grow-0"><%= form.number_field :calories, placeholder: 'kcal' %></div>
+      <div class="flex grow md:grow-0"><%= form.submit 'Save', class: 'grow' %></div>
     <% end %>
   </div>
 <% end %>

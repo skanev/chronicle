@@ -33,6 +33,10 @@ turbo-frame { @apply contents; }
   }
 }
 
+.heading { @apply text-2xl p-4 md:px-0 font-bold; }
+.tile { @apply bg-white md:rounded-lg shadow p-4; }
+.tile:empty { display: none; background-color: red !important; }
+
 .units { @apply font-mono text-sm text-slate-500; }
 
 .horizontal-form {
@@ -61,4 +65,13 @@ turbo-frame { @apply contents; }
   & .input-block { @apply flex flex-col; }
   & .error-messages { @apply text-red-500; }
   & .actions { @apply flex flex-row justify-end gap-2; }
+}
+
+/* TODO: This is a bad name and should be changed */
+.table-actions {
+  @apply flex flex-row gap-2;
+
+  & > form { @apply contents; }
+  & > form > *,
+  & > * { @apply flex-1 grow; }
 }
